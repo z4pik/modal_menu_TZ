@@ -1,0 +1,20 @@
+{% load menus_extras %}
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <a href="{{ menu_item.explicit_url }}">{{ menu_item.name }}</a>
+    {% if menu_item.children %}
+    <details {% if menu_item.id in unwrapped_menu_item_ids %} open {% endif %}>
+        <summary> Open
+        </summary>
+        {% for child in menu_item.children %}
+        <div class="dropdown-item">
+            <p>{% draw_menu_item_children child.id %}</p>
+        </div>
+        {% endfor %}
+    </details>
+    {% endif %}
+</body>
